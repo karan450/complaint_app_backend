@@ -4,8 +4,15 @@ error_reporting(E_ALL);
 ini_set('error_log', __DIR__ . '/error_log.txt');
 
 // CORS + JSON
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Headers: *");
+    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+    http_response_code(200);
+    exit(0);
+}
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
+header("Access-Control-Allow-Headers: *");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Content-Type: application/json");
 
